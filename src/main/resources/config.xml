@@ -1,0 +1,28 @@
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>Application.log</file>
+        <append>true</append> <!-- Append to an existing log file -->
+        <encoder>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
+     </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize> <!-- Maximum file size -->
+            <maxHistory>5</maxHistory> <!-- Maximum number of backup files -->
+        </rollingPolicy>
+    </appender>
+
+
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <appender-ref ref = "file"/>
+    </root>
+</configuration>
